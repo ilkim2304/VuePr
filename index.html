@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue notifications</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue@3"></script>
+  <div id="app">
+    
+    <h1>Моё приложение для уведомлений</h1>
+    <form @submit.prevent="save">
+      <h2>{{editTitle}}</h2>
+      <label> Название
+        <input type="text" v-model="edited.item.title" required>
+      </label>
+      <label>Описание
+        <input type="text" v-model="edited.item.description">
+      </label>
+      <label>Дата
+        <input type="datetime-local" v-model="edited.item.timeValue" required>
+      </label>
+      <div class="form-controls">
+        <button>Сохранить</button>
+        <button type="button" @click="cancel">Отмена</button>
+      </div>
+    </form>
+
+    <h2>Список уведомлений</h2>
+    <ul>
+      <li v-for="(item, i) in items">
+        <h3>{{item.title}}</h3>
+        <p>{{item.description}}</p>
+        <input type="datetime-local" :value="item.timeValue" readonly>
+        <div class="controls">
+          <button @click="edit(i)" class="edit">&#9998;</button>
+          <button @click="remove(i)" class="remove">&#10005;</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+<style>
+  #app {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    border: 1px solid royalblue;
+    border-radius: 3px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  li>*,
+  form>* {
+    margin-right: 10px;
+  }
+
+  .controls {
+    margin-left: auto;
+  }
+
+  .controls button {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .edit {
+    color: darkblue;
+  }
+
+  .remove {
+    color: red;
+  }
+
+  .form-controls {
+    display: flex;
+    margin-top: 5px;
+
+  }
+
+  .form-controls button {
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+</style>
+
+</html>
