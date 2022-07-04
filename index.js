@@ -3,7 +3,7 @@ Notification.requestPermission()
 const { createApp, onMounted, reactive, computed } = Vue
 const dateFormat = time => new Date(new Date(time) - new Date(time).getTimezoneOffset() * 60000).toISOString().substring(0, 16)
 
-const test = [{ title: 'test', description: 'test'}]
+const test = [{ title: 'test', description: 'test1', time: 1656949939000, timeValue: dateFormat(1656949939000) }]
 
 const setup = () => {
   const localItems = localStorage.getItem('notifications')
